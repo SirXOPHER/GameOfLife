@@ -29,20 +29,20 @@ public class GameOfLifeShould {
                 new Object[]{
                         new Game(new Cell(0, 0)), new Game()
                 },
-                // A cell with two neighbours survive
+                // A cell with two neighbours survive (and generate a new one)
                 new Object[]{
                         new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0)),
-                        new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0))
+                        new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0), new Cell(1,1))
                 },
                 // A cell with three neighbours survive
                 new Object[]{
                         new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0), new Cell(1, 1)),
                         new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0), new Cell(1, 1))
                 },
-                // A cell with four neighbours dies
+                // A cell with four neighbours dies (and generate 1 new cell)
                 new Object[]{
                         new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0), new Cell(1, 1), new Cell(-1, 0)),
-                        new Game(new Cell(1, 0), new Cell(1, 1), new Cell(-1, 0))
+                        new Game(new Cell(-1, 0), new Cell(-1, 1), new Cell(1, 0), new Cell(1, 1), new Cell(0, -1) )
                 },
                 new Object[]{
                         new Game(new Cell(-1, 0), new Cell(0, 1), new Cell(1, 0)),

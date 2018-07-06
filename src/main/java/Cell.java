@@ -1,3 +1,6 @@
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class Cell {
 
@@ -37,5 +40,18 @@ class Cell {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    public Set<Cell> blowUp() {
+        return Stream.of(
+                new Cell(x-1, y),
+                new Cell(x-1, y+1),
+                new Cell( x, y+1),
+                new Cell(x+1, y+1),
+                new Cell(x+1, y),
+                new Cell( x+1, y-1),
+                new Cell(x, y-1),
+                new Cell(x-1, y-1)
+                ).collect(Collectors.toSet());
     }
 }

@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,7 +21,24 @@ class Game {
         Set<Cell> survivingCells = cells.stream()
                 .filter(this::survive)
                 .collect(Collectors.toSet());
+        Set<Cell> generatedCells = new HashSet<>(generateFrom(cells));
+        survivingCells.addAll(generatedCells);
         return new Game(survivingCells);
+    }
+
+    private Set<Cell> generateFrom(Set<Cell> cells) {
+        return cells.stream().flatMap(c -> c.blowUp().stream())
+                .distinct()
+                .filter(this::reproduce)
+                .collect(Collectors.toSet());
+    }
+
+    private boolean reproduce(Cell cell) {
+        long numberOfNeighbours =  cells.stream()
+                .filter( c -> !c.equals(cell))
+                .filter(cell::isNeighbor)
+                .count();
+        return numberOfNeighbours == 3;
     }
 
     private boolean survive(Cell cell) {
