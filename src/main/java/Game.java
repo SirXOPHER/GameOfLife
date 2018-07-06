@@ -11,7 +11,7 @@ class Game {
         return this;
     }
 
-    public void populate(Cell cell) {
+    void populate(Cell cell) {
         this.cell = cell;
     }
 }
