@@ -19,7 +19,7 @@ public class GameOfLifeShould {
         assertThat(afterEvolutionGame, is(equalTo(expectedGameAfterEvolution)));
     }
 
-    public Object[][] getGameBeforeAndAfterEvolution(){
+    public Object[][] getGameBeforeAndAfterEvolution() {
         return new Object[][]{
                 // Dead cell with no neighbour stay dead
                 new Object[]{
@@ -27,22 +27,26 @@ public class GameOfLifeShould {
                 },
                 // A cell with no neighbour dies
                 new Object[]{
-                        new Game(new Cell(0,0)), new Game()
+                        new Game(new Cell(0, 0)), new Game()
                 },
                 // A cell with two neighbours survive
                 new Object[]{
-                        new Game(new Cell(0,0), new Cell(0,1), new Cell(1,0)),
+                        new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0)),
                         new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0))
                 },
                 // A cell with three neighbours survive
                 new Object[]{
-                        new Game(new Cell(0,0), new Cell(0,1), new Cell(1,0), new Cell(1, 1)),
+                        new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0), new Cell(1, 1)),
                         new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0), new Cell(1, 1))
                 },
                 // A cell with four neighbours dies
                 new Object[]{
-                        new Game(new Cell(0,0), new Cell(0,1), new Cell(1,0), new Cell (1,1), new Cell (-1, 0)),
-                        new Game(new Cell(1,0), new Cell(1,1), new Cell(-1,0))
+                        new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0), new Cell(1, 1), new Cell(-1, 0)),
+                        new Game(new Cell(1, 0), new Cell(1, 1), new Cell(-1, 0))
+                },
+                new Object[]{
+                        new Game(new Cell(-1, 0), new Cell(0, 1), new Cell(1, 0)),
+                        new Game(new Cell(0, 1), new Cell(0, 0))
                 }
         };
     }
