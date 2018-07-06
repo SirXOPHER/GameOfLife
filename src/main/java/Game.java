@@ -23,7 +23,7 @@ class Game {
                 .collect(Collectors.toSet());
 
         Set<Cell> generatedCells = cells.stream()
-                .flatMap(c -> c.produceNeighbours().stream())
+                .flatMap(c -> c.produceNeighbours())
                 .distinct()
                 .filter( c -> !cells.contains(c))
                 .filter(this::surviveReproduction)

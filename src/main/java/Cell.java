@@ -42,7 +42,7 @@ class Cell {
                 '}';
     }
 
-    Set<Cell> produceNeighbours() {
+    Stream<Cell> produceNeighbours() {
         return Stream.of(
                 new Cell(x-1, y),
                 new Cell(x-1, y+1),
@@ -52,6 +52,6 @@ class Cell {
                 new Cell( x+1, y-1),
                 new Cell(x, y-1),
                 new Cell(x-1, y-1)
-                ).collect(Collectors.toSet());
+                );
     }
 }
