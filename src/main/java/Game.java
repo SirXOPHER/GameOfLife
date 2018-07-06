@@ -1,10 +1,10 @@
-public class Game {
+class Game {
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return true;
     }
 
-    public Game evolve() {
+    Game evolve() {
         return this;
     }
 }
