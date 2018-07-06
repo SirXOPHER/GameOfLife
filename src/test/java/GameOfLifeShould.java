@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
 public class GameOfLifeShould {
@@ -38,5 +39,15 @@ public class GameOfLifeShould {
         Game nextGameGeneration = game.evolve();
 
         assertThat(nextGameGeneration.isEmpty(), is(true));
+    }
+
+    @Test
+    public void preserveACellWithTwoNeighbor() {
+        Game game = new Game(new Cell(0,0), new Cell(0,1), new Cell(1,0));
+        Game expectedGame = new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0));
+
+        Game nextGameGeneration = game.evolve();
+
+        assertThat(nextGameGeneration.evolve(), is(equalTo(expectedGame)));
     }
 }
