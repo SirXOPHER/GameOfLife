@@ -15,25 +15,12 @@ public class GameOfLifeShould {
         assertThat(new Game().isEmpty(), is(true));
     }
 
-    @Test
-    public void ensureEmptyUniverseIsStillEmptyAfterFirstGeneration() {
-        assertThat(new Game().evolve().isEmpty(), is(true));
-    }
 
     @Test
     public void detectSeed() {
         Game game = new Game(new Cell(0, 0));
 
         assertThat(game.isEmpty(), is(false));
-    }
-
-    @Test
-    public void killACellWithNoNeighbour() {
-        Game game = new Game(new Cell(0, 0));
-
-        Game nextGameGeneration = game.evolve();
-
-        assertThat(nextGameGeneration.isEmpty(), is(true));
     }
 
     @Test
@@ -47,6 +34,10 @@ public class GameOfLifeShould {
 
     public Object[][] getGameBeforeAndAfterEvolution(){
         return new Object[][]{
+                // Dead cell with no neighbour stay dead
+                new Object[]{
+                        new Game(), new Game()
+                },
                 // A cell with no neighbour dies
                 new Object[]{
                         new Game(new Cell(0,0)), new Game()
