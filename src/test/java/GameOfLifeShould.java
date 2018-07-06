@@ -17,17 +17,26 @@ public class GameOfLifeShould {
 
     @Test
     public void detectSeed() {
-        Game game = new Game(new Cell());
+        Game game = new Game(new Cell(0, 0));
 
         assertThat(game.isEmpty(), is(false));
     }
 
     @Test
-    public void killACellWithNoNeighbor() {
-        Game game = new Game(new Cell());
+    public void killACellWithNoNeighbour() {
+        Game game = new Game(new Cell(0, 0));
 
         Game nextGameGeneration = game.evolve();
 
-        assertThat(nextGameGeneration.isEmpty(), is (true));
+        assertThat(nextGameGeneration.isEmpty(), is(true));
+    }
+
+    @Test
+    public void killACellWithOneNeighbour() {
+        Game game = new Game(new Cell(0, 0), new Cell(0, 1));
+
+        Game nextGameGeneration = game.evolve();
+
+        assertThat(nextGameGeneration.isEmpty(), is(true));
     }
 }

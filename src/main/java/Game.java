@@ -1,18 +1,16 @@
+import java.util.Arrays;
+import java.util.List;
 
 class Game {
 
-    private final Cell cell;
+    private final List<Cell> cells;
 
-    Game(){
-        this(null);
-    }
-
-    Game(Cell cell){
-        this.cell = cell;
+    Game(Cell... cell){
+        this.cells = Arrays.asList(cell);
     }
 
     boolean isEmpty() {
-        return cell == null;
+        return cells.isEmpty();
     }
 
     Game evolve() {
