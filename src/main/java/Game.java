@@ -1,12 +1,12 @@
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 class Game {
 
-    private static final int MINIMUM_NUMBER_TO_SURVIVE = 2;
-    private static final int MAXIMUM_NUMBER_TO_SURVIVE = 4;
+    private static final int MINIMUM_NUMBER_OF_NEIGHBOURS_TO_SURVIVE = 2;
+    private static final int MAXIMUM_NUMBER_OF_NEIGHBOURS_TO_SURVIVE = 4;
+    private static final int EXACT_NUMBER_OF_NEIGHBOURS_TO_REPRODUCE = 3;
     private final Set<Cell> cells;
 
     Game(Cell... cell) {
@@ -21,34 +21,33 @@ class Game {
         Set<Cell> survivingCells = cells.stream()
                 .filter(this::survive)
                 .collect(Collectors.toSet());
-        Set<Cell> generatedCells = new HashSet<>(generateFrom(cells));
+
+        Set<Cell> generatedCells = cells.stream()
+                .flatMap(c -> c.produceNeighbours().stream())
+                .distinct()
+                .filter( c -> !cells.contains(c))
+                .filter(this::surviveReproduction)
+                .collect(Collectors.toSet());
+
         survivingCells.addAll(generatedCells);
         return new Game(survivingCells);
     }
 
-    private Set<Cell> generateFrom(Set<Cell> cells) {
-        return cells.stream().flatMap(c -> c.blowUp().stream())
-                .distinct()
-                .filter(this::reproduce)
-                .collect(Collectors.toSet());
-    }
-
-    private boolean reproduce(Cell cell) {
+    private boolean surviveReproduction(Cell cell) {
         long numberOfNeighbours =  cells.stream()
-                .filter( c -> !c.equals(cell))
-                .filter(cell::isNeighbor)
+                .filter(cell::isNeighbour)
                 .count();
-        return numberOfNeighbours == 3;
+        return numberOfNeighbours == EXACT_NUMBER_OF_NEIGHBOURS_TO_REPRODUCE;
     }
 
     private boolean survive(Cell cell) {
         long numberOfNeighbours = cells.stream()
                 .filter(c -> !c.equals(cell))
-                .filter(cell::isNeighbor)
+                .filter(cell::isNeighbour)
                 .count();
 
-        return numberOfNeighbours >= MINIMUM_NUMBER_TO_SURVIVE
-                && numberOfNeighbours < MAXIMUM_NUMBER_TO_SURVIVE;
+        return numberOfNeighbours >= MINIMUM_NUMBER_OF_NEIGHBOURS_TO_SURVIVE
+                && numberOfNeighbours < MAXIMUM_NUMBER_OF_NEIGHBOURS_TO_SURVIVE;
     }
 
     @Override

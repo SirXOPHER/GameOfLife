@@ -12,7 +12,7 @@ class Cell {
         this.y = y;
     }
 
-    boolean isNeighbor(Cell cell) {
+    boolean isNeighbour(Cell cell) {
         return Math.abs(cell.x - x) <= 1
                 && Math.abs(cell.y - y) <= 1;
     }
@@ -42,7 +42,7 @@ class Cell {
                 '}';
     }
 
-    public Set<Cell> blowUp() {
+    Set<Cell> produceNeighbours() {
         return Stream.of(
                 new Cell(x-1, y),
                 new Cell(x-1, y+1),
