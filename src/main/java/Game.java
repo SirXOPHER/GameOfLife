@@ -16,7 +16,7 @@ class Game {
     }
 
     Game evolve() {
-        return this;
+        return new Game();
     }
 
 }
