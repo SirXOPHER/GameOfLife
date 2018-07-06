@@ -5,6 +5,6 @@ public class Game {
     }
 
     public Game evolve() {
-        return null;
+        return this;
     }
 }
