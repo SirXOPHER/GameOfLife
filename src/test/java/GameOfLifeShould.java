@@ -20,4 +20,11 @@ public class GameOfLifeShould {
         Game game = new Game(new Cell());
         assertThat(game.isEmpty(), is(false));
     }
+
+    @Test
+    public void killACellWithNoNeighbor() {
+        Game game = new Game(new Cell());
+        assertThat(game.evolve().isEmpty(), is (true));
+
+    }
 }
