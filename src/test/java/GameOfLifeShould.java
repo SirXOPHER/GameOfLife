@@ -1,3 +1,4 @@
+import javafx.scene.control.Cell;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -13,5 +14,12 @@ public class GameOfLifeShould {
     @Test
     public void ensureEmptyUniverseIsStillEmptyAfterFirstGeneration() {
         assertThat(new Game().evolve().isEmpty(), is(true));
+    }
+
+    @Test
+    public void detectSeed() {
+        Game game = new Game();
+        game.populate(new Cell());
+        assertThat(game.isEmpty(), is(false));
     }
 }
