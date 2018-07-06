@@ -26,9 +26,12 @@ class Game {
     }
 
     private boolean survive(Cell cell) {
-        return cells.stream().filter(c -> !c.equals(cell))
+        long numberOfNeighbours = cells.stream()
+                .filter(c -> !c.equals(cell))
                 .filter(cell::isNeighbor)
-                .count() >= 2;
+                .count();
+
+        return numberOfNeighbours >= 2 && numberOfNeighbours < 4;
     }
 
     @Override
