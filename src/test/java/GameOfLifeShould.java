@@ -44,6 +44,7 @@ public class GameOfLifeShould {
                         new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0), new Cell(1, 1), new Cell(-1, 0)),
                         new Game(new Cell(-1, 0), new Cell(-1, 1), new Cell(1, 0), new Cell(1, 1), new Cell(0, -1) )
                 },
+                // A dead cell with three neighbours become alive
                 new Object[]{
                         new Game(new Cell(-1, 0), new Cell(0, 1), new Cell(1, 0)),
                         new Game(new Cell(0, 1), new Cell(0, 0))
