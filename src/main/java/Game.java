@@ -1,9 +1,10 @@
-import javafx.scene.control.Cell;
 
 class Game {
 
+    private Cell cell = null;
+
     boolean isEmpty() {
-        return true;
+        return cell == null;
     }
 
     Game evolve() {
@@ -11,6 +12,6 @@ class Game {
     }
 
     public void populate(Cell cell) {
-
+        this.cell = cell;
     }
 }

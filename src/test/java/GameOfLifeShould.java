@@ -1,4 +1,3 @@
-import javafx.scene.control.Cell;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
