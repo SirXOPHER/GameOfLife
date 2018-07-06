@@ -4,6 +4,8 @@ import java.util.stream.Stream;
 
 class Game {
 
+    private static final int MINIMUM_NUMBER_TO_SURVIVE = 2;
+    private static final int MAXIMUM_NUMBER_TO_SURVIVE = 4;
     private final Set<Cell> cells;
 
     Game(Cell... cell) {
@@ -27,7 +29,8 @@ class Game {
                 .filter(cell::isNeighbor)
                 .count();
 
-        return numberOfNeighbours >= 2 && numberOfNeighbours < 4;
+        return numberOfNeighbours >= MINIMUM_NUMBER_TO_SURVIVE
+                && numberOfNeighbours < MAXIMUM_NUMBER_TO_SURVIVE;
     }
 
     @Override

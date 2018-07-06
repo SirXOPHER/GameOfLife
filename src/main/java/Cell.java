@@ -9,6 +9,11 @@ class Cell {
         this.y = y;
     }
 
+    boolean isNeighbor(Cell cell) {
+        return Math.abs(cell.x - x) <= 1
+                && Math.abs(cell.y - y) <= 1;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -32,10 +37,5 @@ class Cell {
                 "x=" + x +
                 ", y=" + y +
                 '}';
-    }
-
-    boolean isNeighbor(Cell cell) {
-        return Math.abs(cell.x - x) <= 1
-                && Math.abs(cell.y - y) <= 1;
     }
 }
