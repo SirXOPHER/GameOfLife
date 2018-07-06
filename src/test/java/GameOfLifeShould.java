@@ -42,9 +42,19 @@ public class GameOfLifeShould {
     }
 
     @Test
-    public void preserveACellWithTwoNeighbor() {
+    public void preserveACellWithTwoNeighbours() {
         Game game = new Game(new Cell(0,0), new Cell(0,1), new Cell(1,0));
         Game expectedGame = new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0));
+
+        Game nextGameGeneration = game.evolve();
+
+        assertThat(nextGameGeneration.evolve(), is(equalTo(expectedGame)));
+    }
+
+    @Test
+    public void preserveACellWithThreeNeighbours() {
+        Game game = new Game(new Cell(0,0), new Cell(0,1), new Cell(1,0), new Cell(1, 1));
+        Game expectedGame = new Game(new Cell(0, 0), new Cell(0, 1), new Cell(1, 0), new Cell(1, 1));
 
         Game nextGameGeneration = game.evolve();
 

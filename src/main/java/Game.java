@@ -12,7 +12,7 @@ class Game {
 
     private Game(Set<Cell> cells) {
         this.cells = cells;
-    }˚
+    }
 
     Game evolve() {
         Set<Cell> survivingCells = cells.stream()
