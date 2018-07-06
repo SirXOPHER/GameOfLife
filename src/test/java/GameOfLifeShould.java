@@ -17,8 +17,7 @@ public class GameOfLifeShould {
 
     @Test
     public void detectSeed() {
-        Game game = new Game();
-        game.populate(new Cell());
+        Game game = new Game(new Cell());
         assertThat(game.isEmpty(), is(false));
     }
 }

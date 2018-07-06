@@ -1,7 +1,15 @@
 
 class Game {
 
-    private Cell cell = null;
+    private final Cell cell;
+
+    Game(){
+        this(null);
+    }
+
+    Game(Cell cell){
+        this.cell = cell;
+    }
 
     boolean isEmpty() {
         return cell == null;
@@ -11,7 +19,4 @@ class Game {
         return this;
     }
 
-    void populate(Cell cell) {
-        this.cell = cell;
-    }
 }
