@@ -11,19 +11,6 @@ import static org.junit.Assert.assertThat;
 public class GameOfLifeShould {
 
     @Test
-    public void haveEmptyUniverseWithNoSeed() {
-        assertThat(new Game().isEmpty(), is(true));
-    }
-
-
-    @Test
-    public void detectSeed() {
-        Game game = new Game(new Cell(0, 0));
-
-        assertThat(game.isEmpty(), is(false));
-    }
-
-    @Test
     @Parameters(method = "getGameBeforeAndAfterEvolution")
     public void evolveGame(Game gameBeforeEvolution, Game expectedGameAfterEvolution) {
 

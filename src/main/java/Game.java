@@ -21,10 +21,6 @@ class Game {
         return new Game(survivingCells);
     }
 
-    boolean isEmpty() {
-        return cells.isEmpty();
-    }
-
     private boolean survive(Cell cell) {
         long numberOfNeighbours = cells.stream()
                 .filter(c -> !c.equals(cell))
