@@ -9,4 +9,9 @@ public class GameOfLifeShould {
     public void haveEmptyUniverseWithNoSeed() {
         assertThat(new Game().isEmpty(), is(true));
     }
+
+    @Test
+    public void ensureEmptyUniverseIsStillEmptyAfterFirstGeneration() {
+        assertThat(new Game().evolve().isEmpty(), is(true));
+    }
 }
